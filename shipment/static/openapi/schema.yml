@@ -164,6 +164,124 @@ paths:
                     type: string
                     format: date
                     nullable: true
+  /shipments/{tracking_id}/:
+    get:
+      operationId: getShipment
+      parameters:
+      - name: tracking_id
+        in: path
+        required: true
+        description: 'Shipment tracking id'
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                required:
+                - shipper_name
+                - shipper_city
+                - shipper_country
+                - shipper_address
+                - shipper_phone
+                - receiver_name
+                - receiver_city
+                - receiver_country
+                - receiver_address
+                - receiver_phone
+                - title
+                - weight
+                - total_amount
+                - number_of_pieces
+                - status
+                - estimated_shipping_date
+                - tracking_id
+                - scheduled_at
+                properties:
+                  shipper_name:
+                    type: string
+                    maxLength: 250
+                  shipper_city:
+                    type: string
+                    maxLength: 50
+                  shipper_country:
+                    type: string
+                    maxLength: 50
+                  shipper_address:
+                    type: string
+                    maxLength: 250
+                  shipper_phone:
+                    type: string
+                    maxLength: 15
+                  receiver_name:
+                    type: string
+                    maxLength: 250
+                  receiver_country:
+                    type: string
+                    maxLength: 50
+                  receiver_city:
+                    type: string
+                    maxLength: 50
+                  receiver_address:
+                    type: string
+                    maxLength: 250
+                  receiver_phone:
+                    type: string
+                    maxLength: 15
+                  title:
+                    type: string
+                  weight:
+                    type: number
+                    minimum: 1
+                  total_amount:
+                    type: number
+                    minimum: 0.5
+                  number_of_pieces:
+                    type: number
+                    minimum: 1
+                  estimated_shipping_date:
+                    type: string
+                    format: date
+                    readOnly: true
+                  status:
+                    type: string
+                    enum:
+                    - PENDING
+                    - SCHEDULED
+                    - PREPARED
+                    - DELIVERED
+                    readOnly: true
+                  tracking_id:
+                    type: string
+                    readOnly: true
+                  scheduled_at:
+                    type: string
+                    format: date
+                    nullable: true
+
+  /shipments/update_status/:
+    post:
+      operationId: updateShipmentStatus
+      parameters: []
+      requestBody:  
+        content:
+          application/json:
+            schema:
+              required:
+              - status
+              - tracking_id
+              properties:
+                status:
+                  type: string
+                tracking_id:
+                  type: string
+      responses:
+        '200':
+          description: shipment status is updated
+          schema:            
+            type: file
+
 
   /shipments/{tracking_id}/print/:
     get:

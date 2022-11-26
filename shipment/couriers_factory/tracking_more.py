@@ -7,7 +7,7 @@ import requests
 logger = logging.getLogger(__name__)
 
 
-class SmasCourier(CourierFactory, Cancallable):
+class TrackingMoreCourier(CourierFactory, Cancallable):
 
     def __init__(self):
         self.URL = 'https://api.trackingmore.com/v3/trackings'
