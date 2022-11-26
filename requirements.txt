@@ -52,3 +52,4 @@ vine==5.0.0
 wcwidth==0.2.5
 wkhtmltopdf==0.2
 wrapt==1.14.1
+redis==4.3.5

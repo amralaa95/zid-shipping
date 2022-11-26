@@ -6,12 +6,12 @@ from django.core.validators import MinValueValidator
 
 class Shipment(models.Model):
     PENDING = 'PENDING'
-    SCHEDULED = "SCHEDULED"
-    DELIVERED = "DELIVERED"
-    CANCELLED = "CANCELLED"
+    SCHEDULED = 'SCHEDULED'
+    DELIVERED = 'DELIVERED'
+    CANCELLED = 'CANCELLED'
 
-    SMSA = "SMSA"
-    ARAMEX = "ARAMEX"
+    SMSA = 'SMSA'
+    ARAMEX = 'ARAMEX'
 
     STATUS_CHOCIES = (
         (PENDING, PENDING),
@@ -54,7 +54,7 @@ class Shipment(models.Model):
         return self.title
 
     def get_waybill(self):
-        """
+        '''
         Return the pdf representation of this shipment
 
         Args:
@@ -62,7 +62,7 @@ class Shipment(models.Model):
 
         Returns:
             Byte: the Byte representation of the shipment label in pdf format.
-        """
+        '''
 
         file_loader = FileSystemLoader('shipment/templates')
         env = Environment(loader=file_loader)
@@ -71,7 +71,7 @@ class Shipment(models.Model):
         return pdfkit.from_string(str_temp, False)
 
     def to_dict(self):
-        """
+        '''
         Return te Dict representation of the shipment object
 
         Args:
@@ -79,25 +79,25 @@ class Shipment(models.Model):
 
         Returns:
             DICT: a doctionary representation of the shipment object.
-        """
+        '''
 
         return {
-            "title": self.title,
-            "shipper_name": self.shipper_name,
-            "shipper_country": self.shipper_country,
-            "shipper_city": self.shipper_city,
-            "shipper_address": self.shipper_address,
-            "shipper_phone": self.shipper_phone,
-            "receiver_name": self.receiver_name,
-            "receiver_country": self.receiver_country,
-            "receiver_city": self.receiver_city,
-            "receiver_address": self.receiver_address,
-            "receiver_phone": self.receiver_phone,
-            "weight": self.weight,
-            "status": self.status,
-            "tracking_id": self.tracking_id,
-            "estimated_shipping_date": self.estimated_shipping_date,
-            "scheduled_at": self.scheduled_at,
-            "number_of_pieces": self.number_of_pieces,
-            "total_amount": self.total_amount
+            'title': self.title,
+            'shipper_name': self.shipper_name,
+            'shipper_country': self.shipper_country,
+            'shipper_city': self.shipper_city,
+            'shipper_address': self.shipper_address,
+            'shipper_phone': self.shipper_phone,
+            'receiver_name': self.receiver_name,
+            'receiver_country': self.receiver_country,
+            'receiver_city': self.receiver_city,
+            'receiver_address': self.receiver_address,
+            'receiver_phone': self.receiver_phone,
+            'weight': self.weight,
+            'status': self.status,
+            'tracking_id': self.tracking_id,
+            'estimated_shipping_date': self.estimated_shipping_date,
+            'scheduled_at': self.scheduled_at,
+            'number_of_pieces': self.number_of_pieces,
+            'total_amount': self.total_amount
         }

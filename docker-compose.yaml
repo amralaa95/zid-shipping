@@ -12,6 +12,14 @@ services:
     networks:
       - zid-network
 
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - 3304:3304
+    networks:
+      - zid-network
+    
   shipment:
     build: .
     container_name: shipment
@@ -23,6 +31,7 @@ services:
       - zid-network
     depends_on:
       - db
+      - redis
     command: sh -c "/wait && ./run.sh shipment"
     volumes:
       - ./:/zid/

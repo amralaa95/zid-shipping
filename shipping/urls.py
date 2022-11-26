@@ -1,4 +1,4 @@
-"""shipping URL Configuration
+'''shipping URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -12,7 +12,7 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+'''
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, re_path, include
@@ -20,7 +20,7 @@ from django.views.generic import TemplateView
 from shipment.urls import shipment_router
 
 urlpatterns = [
-    re_path('openapi/', TemplateView.as_view(template_name="index.html")),
+    re_path('openapi/', TemplateView.as_view(template_name='index.html')),
     re_path(r'^api/v1/', include(shipment_router.urls)),
 ]
 

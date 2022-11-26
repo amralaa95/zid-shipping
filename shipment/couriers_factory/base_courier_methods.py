@@ -10,14 +10,11 @@ class CourierFactory(ABC):
         pass
 
     @abstractmethod
-    def retrive_status(self, tracking_id):
+    def retrive_status(self, tracking_id: str):
         pass
 
-    def generate_tracking_id(self):
+    def generate_tracking_id(self) -> str:
         return str(uuid.uuid4()).replace('-', '')
 
-
-class Cancallable(ABC):  # this class for the couriers that wants to cancel thier orders so they use it
-
-    def cancel_order(self, tracking_id):
-        pass
+    def cancel_order(self, tracking_id: str):
+        raise NotImplementedError('Cancel order not exist for this Courier')

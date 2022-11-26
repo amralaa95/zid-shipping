@@ -27,7 +27,7 @@ class ShipmentSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        """
+        '''
         Create a Shipment object.
 
         Args:
@@ -35,7 +35,7 @@ class ShipmentSerializer(serializers.ModelSerializer):
 
         Returns:
             The created Shipment object.
-        """
+        '''
 
         shipment = Shipment(**validated_data)
         shipment.save()

@@ -32,12 +32,13 @@ http://localhost:9000/openapi/
 
 ```bash
 - Enter to swager openapi
-- Use first API to create a shippment it will create a shippment in courier and then save it on our system
-- You can retrive this shippment by tracking id with second API and this like create waybill from our system
-- Third API is used like a webhook and can be used in couriers to update shippment status in our system
+- Use first API to create a shipment it will create a shipment in courier and then save it on our system
+- You can retrive this shipment by tracking id with second API and this like create waybill from our system
+- Third API is used like a webhook and can be used in couriers to update shipment status in our system
 - Create a shipment
 - Schedule it
 - Fourth API used for print waybill label
 - Fifth API used for get status for tracking id from courier itself
-- Sixth API for cancel a shippment and this feature can nott be used for all couriers
+- Sixth API for cancel a shipment and this feature can nott be used for all couriers
+There's a ratelimiter on create shipment, print waybill and cancel shipment APIs based on every courier and can see it in settings file in variable `COURIERS_RATELIMITING`
 ```
