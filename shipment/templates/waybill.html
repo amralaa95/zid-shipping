@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<body>
+    <table class="header">
+        <tr style="font-size:8px;">
+          <td colspan="2" style="font-size:20px;">
+            <b>Zid Shipping</b>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="font-size: 23px">{{title}}</td>
+        </tr>
+        <tr>
+          <td>
+            <b>Origin</b>
+          </td>
+          <td>
+            <b>Destination</b>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-size: 15px">{{shipper_country}} - {{shipper_city}}</td>
+          <td style="font-size: 15px">{{receiver_country}} - {{receiver_city}}</td>
+        </tr>
+        <tr>
+          <td>
+            <b>Shipping Date</b>
+            <p style="font-weight:normal">{{estimated_shipping_date}}</p>
+          </td>
+          <td>
+            <b>Weight</b>
+            <p style="font-weight:normal">{{weight}} kg. </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>Quantity</b>
+            <p style="font-weight:normal">{{number_of_pieces}}</p>
+          </td>
+          <td>
+            <b>Total Amount</b>
+            <p style="font-weight:normal">{{total_amount}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>Waybill:</b>
+            <p style="font-size: 15px">
+              <b>{{tracking_id}}</b>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img width="140px" height="60px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQwAAAAeAQMAAADjK7L0AAAABlBMVEX///8AAABVwtN+AAAAAXRSTlMAQObYZgAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADdJREFUOI1j+MzDzGzDw/PBwPjA+fOfz/Pz29gYGHw4//nzh/M8Nn9s+M98YBhVMqpkVMlIUwIAoE7tTjITwxAAAAAASUVORK5CYII="
+            />
+          </td>
+        </tr>
+      </table>
+      <table class="header-table">
+        <tr>
+          <td width="16%">
+            <b>Shipper Name:</b>
+          </td>
+          <td width="35%">{{shipper_name}}</td>
+          <td width="11%">
+            <b>Consignee Name:</b>
+          </td>
+          <td width="35%">{{receiver_name}}</td>
+        </tr>
+        <tr>
+          <td width="16%">
+            <b>Shipper Contact:</b>
+          </td>
+          <td width="35%">{{shipper_phone}}</td>
+          <td width="19%">
+            <b>Consignee Contact:</b>
+          </td>
+          <td width="35%">{{receiver_phone}}</td>
+        </tr>
+        <tr>
+          <td width="16%">
+            <b>Shipper Address:</b>
+          </td>
+          <td width="35%">{{shipper_address}}</td>
+          <td width="17%">
+            <b>Consignee Address:</b>
+          </td>
+          <td width="35%">{{receiver_address}}</td>
+        </tr>
+      </table>
+</body>

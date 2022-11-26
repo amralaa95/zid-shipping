@@ -1,0 +1,214 @@
+openapi: 3.0.2
+servers:
+- url: /api/v1
+  description: example
+info:
+  title: 'ZidShip API Documentation'
+  version: TODO
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []  
+paths:
+  /shipments/:
+    post:
+      operationId: createShipment
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - shipper_name
+              - shipper_city
+              - shipper_country
+              - shipper_address
+              - shipper_phone
+              - receiver_name
+              - receiver_city
+              - receiver_country
+              - receiver_address
+              - receiver_phone
+              - title
+              - weight
+              - total_amount
+              - number_of_pieces
+              properties:
+                shipper_name:
+                  type: string
+                  maxLength: 250
+                shipper_city:
+                  type: string
+                  maxLength: 50
+                shipper_country:
+                  type: string
+                  maxLength: 50
+                shipper_address:
+                  type: string
+                  maxLength: 250
+                shipper_phone:
+                  type: string
+                  maxLength: 15
+                receiver_name:
+                  type: string
+                  maxLength: 250
+                receiver_country:
+                  type: string
+                  maxLength: 50
+                receiver_city:
+                  type: string
+                  maxLength: 50
+                receiver_address:
+                  type: string
+                  maxLength: 250
+                receiver_phone:
+                  type: string
+                  maxLength: 15
+                title:
+                  type: string
+                weight:
+                  type: number
+                  minimum: 1
+                total_amount:
+                  type: number
+                  minimum: 0.5
+                number_of_pieces:
+                  type: number
+                  minimum: 1
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                required:
+                - shipper_name
+                - shipper_city
+                - shipper_country
+                - shipper_address
+                - shipper_phone
+                - receiver_name
+                - receiver_city
+                - receiver_country
+                - receiver_address
+                - receiver_phone
+                - title
+                - weight
+                - total_amount
+                - number_of_pieces
+                - status
+                - estimated_shipping_date
+                - tracking_id
+                - scheduled_at
+                properties:
+                  shipper_name:
+                    type: string
+                    maxLength: 250
+                  shipper_city:
+                    type: string
+                    maxLength: 50
+                  shipper_country:
+                    type: string
+                    maxLength: 50
+                  shipper_address:
+                    type: string
+                    maxLength: 250
+                  shipper_phone:
+                    type: string
+                    maxLength: 15
+                  receiver_name:
+                    type: string
+                    maxLength: 250
+                  receiver_country:
+                    type: string
+                    maxLength: 50
+                  receiver_city:
+                    type: string
+                    maxLength: 50
+                  receiver_address:
+                    type: string
+                    maxLength: 250
+                  receiver_phone:
+                    type: string
+                    maxLength: 15
+                  title:
+                    type: string
+                  weight:
+                    type: number
+                    minimum: 1
+                  total_amount:
+                    type: number
+                    minimum: 0.5
+                  number_of_pieces:
+                    type: number
+                    minimum: 1
+                  estimated_shipping_date:
+                    type: string
+                    format: date
+                    readOnly: true
+                  status:
+                    type: string
+                    enum:
+                    - PENDING
+                    - SCHEDULED
+                    - PREPARED
+                    - DELIVERED
+                    readOnly: true
+                  tracking_id:
+                    type: string
+                    readOnly: true
+                  scheduled_at:
+                    type: string
+                    format: date
+                    nullable: true
+
+  /shipments/{tracking_id}/print/:
+    get:
+      operationId: printShipment
+      parameters:
+      - name: tracking_id
+        in: path
+        required: true
+        description: 'Shipment tracking id'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Waybill with format PDF
+          schema:            
+            type: file
+
+  /shipments/{tracking_id}/status/:
+    get:
+      operationId: statusShipment
+      parameters:
+      - name: tracking_id
+        in: path
+        required: true
+        description: 'Shipment tracking id'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Status for shipment
+          schema:            
+            type: application/json
+
+  /shipments/{tracking_id}/cancel/:
+    put:
+      operationId: cancelShipment
+      parameters:
+      - name: tracking_id
+        in: path
+        required: true
+        description: 'Shipment tracking id'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Cancelled shipment
+          schema:            
+            type: application/json

@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:8.0.31
+    container_name: mysql-db
+    restart: always
+    env_file: .env
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d:ro
+      - ./mysql/data:/var/lib/mysql
+    networks:
+      - zid-network
+
+  shipment:
+    build: .
+    container_name: shipment
+    env_file: .env
+    restart: on-failure
+    ports:
+      - 9000:9000
+    networks:
+      - zid-network
+    depends_on:
+      - db
+    command: sh -c "/wait && ./run.sh shipment"
+    volumes:
+      - ./:/zid/
+
+networks:
+  zid-network:
+    external: false
